@@ -17,13 +17,33 @@ if (isset($_POST['register'])) {
     }
 }
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
 
-<h2>Register</h2>
-<form method="POST">
-    <input type="text" name="name" placeholder="Nama" required><br>
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
-    <button name="register">Register</button>
-</form>
+        <?php if (isset($error)): ?>
+            <div class="error"><?= $error ?></div>
+        <?php endif; ?>
 
-<p>Sudah punya akun? <a href="login.php">Login di sini</a></p>
+        <form method="POST">
+            <input type="text" name="name" placeholder="Nama" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <br>
+            <input type="checkbox" onclick="togglePassword()"> Tampilkan Password
+            <br>
+
+            <button name="register">Register</button>
+        </form>
+        <p>Sudah punya akun? <a href="login.php">Login di sini</a></p>
+    </div>
+</body>
+</html>
+

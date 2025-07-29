@@ -5,6 +5,6 @@ include 'includes/auth.php';
 $user_id = $_SESSION['user_id'];
 $conn->query("UPDATE users SET role = 'seller' WHERE id = $user_id");
 
-header("Location: seller_dashboard.php");
+header("Location: profile.php");
 exit;
 ?>
