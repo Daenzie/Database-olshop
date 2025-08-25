@@ -5,11 +5,13 @@ include 'includes/auth.php';
 $user_id = $_SESSION['user_id'];
 
 $query = "
-    SELECT c.id as cart_id, p.name, p.price, p.image, c.quantity, p.id as product_id
+    SELECT c.id as cart_id, p.name, p.price, p.image, c.quantity, p.id as product_id, p.stock
     FROM cart c
     JOIN products p ON c.product_id = p.id
     WHERE c.user_id = ?
+    AND p.is_deleted = 0
 ";
+
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();

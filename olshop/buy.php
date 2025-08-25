@@ -7,8 +7,8 @@ $product_id = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
 $success = false;
 
 if ($product_id > 0) {
-    // Cek stok dulu
-    $check = $conn->prepare("SELECT stock FROM products WHERE id = ?");
+    // Cek stok & pastikan produk belum dihapus
+    $check = $conn->prepare("SELECT stock FROM products WHERE id = ? AND is_deleted = 0");
     $check->bind_param("i", $product_id);
     $check->execute();
     $result = $check->get_result();
@@ -29,6 +29,7 @@ if ($product_id > 0) {
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>

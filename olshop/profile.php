@@ -41,7 +41,8 @@ $user = $result->fetch_assoc();
             <a href="add_product.php"><button>Tambah Produk</button></a>
 
             <?php
-            $products = $conn->query("SELECT * FROM products WHERE seller_id = $user_id");
+            $products = $conn->query("SELECT * FROM products WHERE seller_id = $user_id ORDER BY is_deleted ASC, created_at DESC");
+
             while ($row = $products->fetch_assoc()):
             ?>
                 <div class="product">
@@ -50,14 +51,20 @@ $user = $result->fetch_assoc();
                     Harga: Rp<?= number_format($row['price'], 0, ',', '.') ?><br>
                     Stok: <?= $row['stock'] ?><br>
                     Deskripsi: <?= $row['description'] ?><br>
+                    Status: <?= $row['is_deleted'] ? '<span style="color:red;">Dihapus</span>' : '<span style="color:green;">Aktif</span>' ?><br>
 
-                    <form method="POST" action="restock_product.php">
-                        <input type="hidden" name="product_id" value="<?= $row['id'] ?>">
-                        <input type="number" name="add_stock" placeholder="Tambah stok" min="1" required>
-                        <button type="submit">Restock</button>
-                    </form>
+                    <?php if ($row['is_deleted']): ?>
+                        <form action="restore_product.php" method="POST">
+                            <input type="hidden" name="product_id" value="<?= $row['id'] ?>">
+                            <button type="submit">Pulihkan</button>
+                        </form>
+                    <?php else: ?>
+                        <form action="delete_product.php" method="POST">
+                            <input type="hidden" name="product_id" value="<?= $row['id'] ?>">
+                            <button type="submit">Hapus</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
-
             <?php endwhile; ?>
         <?php endif; ?>
     </div>

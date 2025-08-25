@@ -21,7 +21,7 @@ if (isset($_POST['register'])) {
 <html>
 <head>
     <title>Register</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/register.css">
 </head>
 <body>
     <div class="container">
@@ -43,7 +43,18 @@ if (isset($_POST['register'])) {
             <button name="register">Register</button>
         </form>
         <p>Sudah punya akun? <a href="login.php">Login di sini</a></p>
+    
     </div>
+    <script>
+        function togglePassword() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </body>
 </html>
 

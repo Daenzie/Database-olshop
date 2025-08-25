@@ -29,8 +29,8 @@ if (isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="assets/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cooper+BT&family=Baloo+Thambi&family=Roca+Two&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -43,15 +43,24 @@ if (isset($_POST['login'])) {
         <form method="POST">
             <input type="email" name="email" placeholder="Email" required><br>
             <input type="password" name="password" id="password" placeholder="Password" required>
-            <br>
-            <input type="checkbox" onclick="togglePassword()"> Tampilkan Password
-            <br>
-            <button name="login">Login</button>
+            <div class="show-password-container">
+                <input type="checkbox" id="show-password" onclick="togglePassword()">
+                <label for="show-password">Tampilkan Password</label>
+            </div>
+            
+            <button name="login">LOGIN</button>
         </form>
-        <script src="includes/show-password.js"></script>
-        <p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
+        <p class="register-link">Belum punya akun? <a href="register.php">Daftar di sini</a></p>
     </div>
+    <script>
+        function togglePassword() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </body>
 </html>
-
-
