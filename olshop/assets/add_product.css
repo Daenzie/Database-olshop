@@ -1,0 +1,137 @@
+/* === add_product.css === */
+/* Import font sama seperti dashboard */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cooper+BT:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi&display=swap');
+
+/* ====== Body ====== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(#fff9c4, #f3e8ff);
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+/* ====== Container Card ====== */
+.container {
+    background: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* ====== Judul ====== */
+.container h2 {
+    font-family: 'Cooper BT', serif;
+    font-weight: bold;
+    font-style: italic;
+    color: #770faf;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ====== Pesan ====== */
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* ====== Form Input ====== */
+form input[type="text"],
+form input[type="number"],
+form textarea,
+form input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    background: radial-gradient(#fdfdfd, #f1f1f1);
+    box-sizing: border-box;
+    margin-bottom: 1.2rem;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Efek saat fokus */
+form input:focus,
+form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(119, 15, 175, 0.3);
+}
+
+/* ====== Tombol Submit ====== */
+form button {
+    background-color: #770faf;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-family: 'Baloo Thambi', cursive;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+form button:hover {
+    background-color: #5d0b8c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(74, 20, 140, 0.3);
+}
+
+/* ====== Link Kembali ====== */
+.container p a {
+    display: inline-block;
+    background-color: transparent;
+    color: #770faf;
+    border: 2px solid #770faf;
+    padding: 8px 15px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: 'Baloo Thambi', cursive;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.container p a:hover {
+    background-color: #770faf;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ====== Responsif ====== */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 1.5rem;
+    }
+    .container h2 {
+        font-size: 1.8rem;
+    }
+}
