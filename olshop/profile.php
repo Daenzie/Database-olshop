@@ -11,7 +11,7 @@ $user = $result->fetch_assoc();
 <html>
 <head>
     <title>Profil Saya</title>
-    <link rel="stylesheet" href="assets/style.css"> <!-- Ini link ke file CSS -->
+    <link rel="stylesheet" href="assets/profile.css"> <!-- Ini link ke file CSS -->
 </head>
 <body>
     <div class="navbar">
