@@ -1,19 +1,31 @@
 <?php
 include 'includes/db.php';
 
+$error = ""; // buat nampung pesan error
+
 if (isset($_POST['register'])) {
-    $name     = $_POST['name'];
-    $email    = $_POST['email'];
+    $name     = trim($_POST['name']);
+    $email    = trim($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
-    $result = mysqli_query($conn, $query);
+    // Cek apakah email sudah terdaftar
+    $checkEmail = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $checkEmail->bind_param("s", $email);
+    $checkEmail->execute();
+    $checkResult = $checkEmail->get_result();
 
-    if ($result) {
-        header("Location: login.php");
-        exit;
+    if ($checkResult->num_rows > 0) {
+        $error = "Email sudah terdaftar! Gunakan email lain.";
     } else {
-        echo "Pendaftaran gagal: " . mysqli_error($conn);
+        // Jika belum ada, lanjut insert
+        $query = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+        $query->bind_param("sss", $name, $email, $password);
+        if ($query->execute()) {
+            header("Location: login.php");
+            exit;
+        } else {
+            $error = "Pendaftaran gagal. Coba lagi.";
+        }
     }
 }
 ?>
@@ -27,8 +39,8 @@ if (isset($_POST['register'])) {
     <div class="container">
         <h2>Register</h2>
 
-        <?php if (isset($error)): ?>
-            <div class="error"><?= $error ?></div>
+        <?php if (!empty($error)): ?>
+            <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
 
         <form method="POST">
